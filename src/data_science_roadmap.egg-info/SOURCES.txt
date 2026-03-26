@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/__init__.py
+src/data_science_roadmap.egg-info/PKG-INFO
+src/data_science_roadmap.egg-info/SOURCES.txt
+src/data_science_roadmap.egg-info/dependency_links.txt
+src/data_science_roadmap.egg-info/top_level.txt
+src/week1/__init__.py
+src/week1/analyzer.py
+tests/test_week1.py
