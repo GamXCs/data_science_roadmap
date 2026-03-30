@@ -1,5 +1,4 @@
 from collections import Counter, defaultdict
-from turtle import hideturtle
 
 """Write a function that takes a list of numbers and returns
 a new list with only the even numbers, squared. No loops — comprehension only."""
@@ -171,4 +170,3 @@ if __name__ == "__main__":
             ]
         )
     )
-    # → {"Birmingham": 95, "huntsville": 80}
