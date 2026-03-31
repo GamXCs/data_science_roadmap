@@ -1,6 +1,7 @@
 from src.week1.functions import (
     build_profile,
     greet,
+    longest_word,
     summarize,
     total,
 )
@@ -46,3 +47,12 @@ def test_summarize_with_args():
 
 def test_summarize_empty_args():
     assert summarize("empty") == {"label": "empty", "values": [], "options": {}}
+
+
+# -------- longest_words ----------
+def test_longest_word_empty_dict():
+    assert longest_word(["a"]) == "a"
+
+
+def test_longest_word_with_entries():
+    assert longest_word(["test", "hello", "computer", "coding"]) == "computer"

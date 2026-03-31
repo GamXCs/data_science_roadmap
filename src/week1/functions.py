@@ -1,4 +1,4 @@
-from analyzer.py import word_lengths
+from src.week1.analyzer import word_lengths
 
 """Day 3 - Functions and Modules"""
 
@@ -78,8 +78,19 @@ that takes a list of words and returns the word with the highest length.
 Use word_lengths to do the heavy lifting — don't recompute lengths manually."""
 
 
-def longest_word():
-    pass
+def longest_word(words: list[str]) -> str:
+    """return the word with the longest length
+
+    Args:
+        words: list of words
+    Return:
+        word with the longest length
+    """
+    # import word_lengths function from analyzer.py and store in var
+    word = word_lengths(words)
+
+    # return longest word
+    return max(word, key=len)
 
 
 if __name__ == "__main__":
