@@ -153,6 +153,13 @@ def highest_temp(records: list[tuple[str, float]]) -> dict[str, float]:
     return {city: max(temps) for city, temps in temp_dict.items()}
 
 
+"""Write a function shortest_word that returns the shortest word"""
+
+
+def shortest_word(words: list[str]) -> str:
+    return min(words, key=len)
+
+
 if __name__ == "__main__":
     print(even_squares([1, 2, 3, 4]))
 

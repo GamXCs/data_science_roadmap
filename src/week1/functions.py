@@ -1,4 +1,6 @@
-from src.week1.analyzer import word_lengths
+from pickletools import long1
+
+from src.week1.analyzer import shortest_word, word_lengths
 
 """Day 3 - Functions and Modules"""
 
@@ -151,8 +153,17 @@ Write a function log_event(event_type, *args, severity="info", **kwargs) that re
 a formatted string like "[info] click: ('button', 'home') | meta: {'user': 'gamliel'}"."""
 
 
-def log_event():
-    pass
+def log_event(event_type, *args, severity="info", **kwargs):
+    """return formatted string: [info] click: ('button', 'home') | meta: {"user": 'gamliel'}
+    Args:
+        event_type:
+        *args:
+        severity=info:
+        **kwargs:
+    Return:
+        formatted string: [info] click: ('button', 'home') | meta: {"user": 'gamliel'}
+    """
+    return f"[{severity}] {event_type}: {args} | meta: {kwargs}"
 
 
 """
@@ -162,8 +173,10 @@ Then import and use it in functions.py to write word_length_range(words) that re
 tuple of (shortest, longest) using both shortest_word and longest_word."""
 
 
-def shortest_word():
-    pass
+def word_length_range(words: list[str]) -> tuple[str, str]:
+    largest_word = longest_word(words)
+    smallest_word = shortest_word(words)
+    return (smallest_word, largest_word)
 
 
 if __name__ == "__main__":

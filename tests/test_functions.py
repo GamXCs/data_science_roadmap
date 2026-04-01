@@ -4,9 +4,11 @@ from src.week1.functions import (
     build_query,
     format_name,
     greet,
+    log_event,
     longest_word,
     summarize,
     total,
+    word_length_range,
 )
 
 """function tests"""
@@ -93,3 +95,24 @@ def test_build_query_multiple_args():
         build_query(q="java", result="OOP", page=12, paragraph=3)
         == "?q=java&result=OOP&page=12&paragraph=3"
     )
+
+
+# --------- log_event -----------
+def test_log_event_func_base_parameters():
+    assert log_event("click", "button") == "[info] click: ('button',) | meta: {}"
+
+
+def test_w_args():
+    assert (
+        log_event("click", "button", "home", severity="warning", user="gamliel")
+        == "[warning] click: ('button', 'home') | meta: {'user': 'gamliel'}"
+    )
+
+
+# --------- word_length_range -------
+def test_word_length():
+    assert word_length_range(["at", "bat", "chat"]) == ("at", "chat")
+
+
+def test_word_length_empty():
+    assert word_length_range(["be", "be"]) == ("be", "be")
