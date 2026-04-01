@@ -1,5 +1,8 @@
 from src.week1.functions import (
+    average,
     build_profile,
+    build_query,
+    format_name,
     greet,
     longest_word,
     summarize,
@@ -29,7 +32,11 @@ def test_total_with_values():
 
 # ------- build_profile --------
 def test_build_profile_with_standard():
-    assert build_profile(name="Gam", age=25) == {"name": "Gam", "age": 25}
+    assert build_profile(name="Gam", age=25, city="Birmingham") == {
+        "name": "Gam",
+        "age": 25,
+        "city": "Birmingham",
+    }
 
 
 def test_build_profile_with_no_kwargs():
@@ -51,8 +58,38 @@ def test_summarize_empty_args():
 
 # -------- longest_words ----------
 def test_longest_word_empty_dict():
-    assert longest_word(["a"]) == "a"
+    assert longest_word(["a", "b"]) == "a", "b"
 
 
 def test_longest_word_with_entries():
     assert longest_word(["test", "hello", "computer", "coding"]) == "computer"
+
+
+# -------- format_name-----------
+def test_regular_formatted_str():
+    assert format_name("Gamliel", "Spinoza") == "Spinoza,Gamliel"
+
+
+def test_spaced_separator():
+    assert format_name("Atarah", "Israel", separator=" ") == "Israel Atarah"
+
+
+# -------- average ----------
+def test_five_args_passed():
+    assert average(1, 2, 4, 7, 6) == 4
+
+
+def test_zero_args_passed():
+    assert average() == 0
+
+
+# ----------- build_query ---------
+def test_build_query():
+    assert build_query(q="python", lang="en", page=1) == "?q=python&lang=en&page=1"
+
+
+def test_build_query_multiple_args():
+    assert (
+        build_query(q="java", result="OOP", page=12, paragraph=3)
+        == "?q=java&result=OOP&page=12&paragraph=3"
+    )

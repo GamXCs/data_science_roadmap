@@ -12,7 +12,7 @@ def greet(name: str, greeting: str = "Hello") -> str:
 
     Args:
         name: person's name
-        greetins: a greeting, defaults to Hello
+        greeting: a greeting, defaults to Hello
     Return:
         A formatted greeting with the person's name
     """
@@ -32,7 +32,6 @@ def total(*args):
     Return:
         0 if nothing is passed and the total sum of numbers if any are provided
     """
-
     return sum(args)
 
 
@@ -70,6 +69,7 @@ def summarize(label: str, *args, **kwargs):
 
     Return:
         dictionary with 3 keys"""
+
     return {"label": label, "values": list(args), "options": kwargs}
 
 
@@ -91,6 +91,79 @@ def longest_word(words: list[str]) -> str:
 
     # return longest word
     return max(word, key=len)
+
+
+"""Exercise 6 — Default parameters
+Write a function format_name(first, last, separator=", ") that returns the name formatted
+as "last[separator]first". Test with the default separator and a custom one like " ".
+"""
+
+
+def format_name(first: str, last: str, separator=",") -> str:
+    """return formatted name
+    Args:
+        first: first name
+        last: last name
+        separator: a comma, but can be altered to a different separator
+    Return:
+        string in form: last[separator]first
+    """
+    return f"{last}{separator}{first}"
+
+
+"""
+Exercise 7 — *args
+Write a function average(*args) that returns the average of all numbers passed in.
+Handle the case where no arguments are passed by returning 0."""
+
+
+def average(*args):
+    """return the average of all numbers passed by - 0 if no args passed
+    Args:
+        args: any number of positional args
+    Return:
+        Average of values entered"""
+    if not args:
+        return 0
+    return sum(args) / len(args)
+
+
+"""
+Exercise 8 — **kwargs
+Write a function build_query(**kwargs) that takes any number of keyword arguments
+and returns a URL query string like "?key1=value1&key2=value2". Order doesn't matter."""
+
+
+def build_query(**kwargs):
+    """func takes any number of keyword args and return a url query string
+       ex: ?key1=value1&key2=value2
+    Args:
+        **kwargs: any number of keyword arguments
+    Return:
+        a url formatted like "?key1=value1&key2=value2"
+    """
+    return "?" + "&".join(f"{key}={value}" for key, value in kwargs.items())
+
+
+"""
+Exercise 9 — Combining all three
+Write a function log_event(event_type, *args, severity="info", **kwargs) that returns
+a formatted string like "[info] click: ('button', 'home') | meta: {'user': 'gamliel'}"."""
+
+
+def log_event():
+    pass
+
+
+"""
+Exercise 10 — Importing between modules
+In analyzer.py, write a function shortest_word(words) that returns the shortest word.
+Then import and use it in functions.py to write word_length_range(words) that returns a
+tuple of (shortest, longest) using both shortest_word and longest_word."""
+
+
+def shortest_word():
+    pass
 
 
 if __name__ == "__main__":
