@@ -60,10 +60,17 @@ def word_count(filepath: str) -> dict[str, int]:
     return count
 
 
+# custom error
 class EmptyFileError(Exception):
     """Raised when a file exists but contains no content."""
+
+    pass
 
 
 def read_nonempty(filepath: str) -> list[str]:
     """Read a file; raise EmptyFileError if it's empty, FileNotFoundError if missing."""
-    pass
+    with open(filepath, mode="r") as f:  # read
+        lines = [line.strip() for line in f]
+        if not lines:  # check if list is empty
+            raise EmptyFileError("File is empty")  # raise custom error
+        return lines  # return list

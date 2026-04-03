@@ -1,4 +1,10 @@
-from src.week1.file_io import append_line, read_lines, word_count, write_lines
+from src.week1.file_io import (
+    append_line,
+    read_lines,
+    read_nonempty,
+    word_count,
+    write_lines,
+)
 
 
 # ----------- read_lines --------------
@@ -59,3 +65,12 @@ def test_word_count_with_punctuation(tmp_path):
     f = tmp_path / "test.txt"
     f.write_text("I.- I,! hi")
     assert word_count(str(f)) == {"i": 2, "hi": 1}
+
+
+# ---------- readnonempty ---------------
+def test_read_nonempty():
+    pass
+
+
+def test_read_nonempty():
+    pass
