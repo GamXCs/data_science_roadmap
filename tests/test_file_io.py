@@ -1,4 +1,6 @@
+import pytest
 from src.week1.file_io import (
+    EmptyFileError,
     append_line,
     read_lines,
     read_nonempty,
@@ -68,9 +70,20 @@ def test_word_count_with_punctuation(tmp_path):
 
 
 # ---------- readnonempty ---------------
-def test_read_nonempty():
-    pass
+def test_read_nonempty(tmp_path):
+    f = tmp_path / "test.txt"
+    f.write_text("I am testing you")
+    assert read_nonempty(str(f)) == ["I am testing you"]
 
 
-def test_read_nonempty():
-    pass
+def test_read_nonempty_empty_file(tmp_path):
+    f = tmp_path / "empty.txt"
+    f.write_text("")
+    with pytest.raises(EmptyFileError):
+        read_nonempty(str(f))
+
+
+def test_read_nonempty_no_file(tmp_path):
+    f = tmp_path / "ghost.txt"
+    with pytest.raises(FileNotFoundError):
+        read_nonempty(str(f))
