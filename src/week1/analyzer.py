@@ -1,5 +1,40 @@
 from collections import Counter, defaultdict
 
+
+# create 3 functions for the CLI
+def count_words(text: str) -> Counter:
+    """return a frequency counter of words
+
+    Args:
+        text: string of words to count
+    Return:
+        frequency Counter"""
+    return Counter(word.strip("!.,?-';:") for word in text.lower())
+
+
+def top_n_words(counter: Counter, n: int = 10) -> list[tuple[str, int]]:
+    """Return the n most common words
+
+    Args:
+        counter: Counter
+        n: number of top words to compute
+
+    Return:
+        n most common words"""
+    return counter.most_common(n)
+
+
+def word_stats(counter: Counter) -> dict:
+    "Return total_words, unique_words, most_common, least_common"
+    return {
+        "total_words": sum(counter.values()),
+        "unique_words": len(counter),  # counts all of the keys by default
+        "most_common": max(counter.keys(), key=lambda w: counter[w]),
+        "least_common": min(counter.keys(), key=lambda w: counter[w]),
+    }
+
+
+# --------------------------------------------------------------------
 """Write a function that takes a list of numbers and returns
 a new list with only the even numbers, squared. No loops — comprehension only."""
 
@@ -177,3 +212,5 @@ if __name__ == "__main__":
             ]
         )
     )
+
+print(count_words("I am I am going to the store"))
