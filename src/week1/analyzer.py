@@ -1,3 +1,4 @@
+import string
 from collections import Counter, defaultdict
 
 
@@ -9,7 +10,7 @@ def count_words(text: str) -> Counter:
         text: string of words to count
     Return:
         frequency Counter"""
-    return Counter(word.strip("!.,?-';:") for word in text.lower())
+    return Counter(word.strip(string.punctuation) for word in text.lower().split())
 
 
 def top_n_words(counter: Counter, n: int = 10) -> list[tuple[str, int]]:
@@ -213,4 +214,4 @@ if __name__ == "__main__":
         )
     )
 
-print(count_words("I am I am going to the store"))
+    print(count_words("I am I am going to the store"))
