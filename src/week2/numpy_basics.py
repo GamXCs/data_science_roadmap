@@ -66,5 +66,28 @@ def filter_array(arr: np.ndarray, threshold: float) -> np.ndarray:
     return arr[arr > threshold]
 
 
+def make_matrix(rows: int, cols: int) -> np.ndarray:
+    # Return a 2D array of zeros with the given number of rows and cols
+    return np.zeros((rows, cols))
+
+
+def row_col_stats(matrix: np.ndarray) -> dict:
+    # Return a dict with:
+    #   "row_means": mean of each row (axis=1)
+    #   "col_means": mean of each column (axis=0)
+    math_done = {"row_means": matrix.mean(axis=1), "col_means": matrix.mean(axis=0)}
+    return math_done
+
+
+# Real world data science pattern i'll use frequently
+# Used to rescale an arr so all values fall between 0-1
+# Formula: normalized = (x - min) / (max-min)
+def normalize_array(arr: np.ndarray) -> np.ndarray:
+    # Apply min-max normalization to arr
+    # Result should have min 0.0 and max 1.0
+    # Use vectorized operations — no loops
+    return (arr - arr.min()) / (arr.max() - arr.min())
+
+
 if __name__ == "__main__":
     pass

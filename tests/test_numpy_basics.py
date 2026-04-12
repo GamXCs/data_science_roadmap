@@ -3,6 +3,9 @@ from src.week2.numpy_basics import (
     array_stats,
     filter_array,
     make_array,
+    make_matrix,
+    normalize_array,
+    row_col_stats,
     scale_array,
     slice_array,
 )
@@ -95,4 +98,60 @@ def test_filter_array_all_pass():
 
 def test_filter_array_returns_ndarray():
     result = filter_array(np.array([1, 2, 3]), 0.0)
+    assert isinstance(result, np.ndarray)
+
+
+# ----------- make_matrix ---------------
+def test_make_matrix_shape():
+    result = make_matrix(3, 4)
+    assert result.shape == (3, 4)
+
+
+def test_make_matrix_all_zeros():
+    result = make_matrix(2, 3)
+    assert np.all(result == 0)
+
+
+def test_make_matrix_returns_ndarray():
+    result = make_matrix(3, 3)
+    assert isinstance(result, np.ndarray)
+
+
+# ---------- row_col_stats ----------------
+def test_row_col_stats_row_means():
+    matrix = np.array([[1, 2, 3], [4, 5, 6]])
+    result = row_col_stats(matrix)
+    assert list(result["row_means"]) == [2.0, 5.0]
+
+
+def test_row_col_stats_col_means():
+    matrix = np.array([[1, 2, 3], [4, 5, 6]])
+    result = row_col_stats(matrix)
+    assert list(result["col_means"]) == [2.5, 3.5, 4.5]
+
+
+def test_row_col_stats_keys():
+    matrix = np.array([[1, 2], [3, 4]])
+    result = row_col_stats(matrix)
+    assert set(result.keys()) == {"row_means", "col_means"}
+
+
+# --------- normalize_array -----------------
+def test_normalize_array_min_is_zero():
+    result = normalize_array(np.array([10, 20, 30, 40, 50]))
+    assert result.min() == 0.0
+
+
+def test_normalize_array_max_is_one():
+    result = normalize_array(np.array([10, 20, 30, 40, 50]))
+    assert result.max() == 1.0
+
+
+def test_normalize_array_midpoint():
+    result = normalize_array(np.array([10, 20, 30, 40, 50]))
+    assert result[2] == 0.5
+
+
+def test_normalize_array_returns_ndarray():
+    result = normalize_array(np.array([1, 2, 3]))
     assert isinstance(result, np.ndarray)
