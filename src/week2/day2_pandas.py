@@ -43,6 +43,16 @@ def drop_column(df: pd.DataFrame, column: str) -> pd.DataFrame:
     return df.drop(columns=[column])
 
 
+def summarize_dataframe(df: pd.DataFrame) -> dict:
+    """Return basic summary info about a Dataframe"""
+    return {
+        "shape": df.shape,
+        "columns": list(df.columns),
+        "dtypes": df.dtypes.to_dict(),
+        "null_counts": df.isnull().sum().to_dict(),
+    }
+
+
 if __name__ == "__main__":
     # test create_series func
     s = create_series([10, 20, 30], ["a", "b", "c"])
@@ -78,3 +88,17 @@ if __name__ == "__main__":
     df1 = create_dataframe({"name": ["Alice", "Bob", "Carol"], "age": [25, 30, 25]})
     result = filter_rows(df1, "age", 25)
     print(result)
+
+    # test summarize_dataframe
+    print("-" * 15)
+
+    df = create_dataframe(
+        {
+            "name": ["Alice", "Bob", "Carol", "David", "Eve"],
+            "age": [25, 30, 25, 35, None],
+            "city": ["Birmingham", "Houston", "Birmingham", "Austin", "Dallas"],
+            "score": [88.5, 92.0, 79.5, 85.0, 91.0],
+        }
+    )
+
+    print(summarize_dataframe(df))

@@ -9,6 +9,7 @@ from src.week2.day2_pandas import (
     select_column,
     select_row_by_label,
     select_row_by_position,
+    summarize_dataframe,
 )
 
 
@@ -98,3 +99,22 @@ def test_drop_column_shape():
     df = create_dataframe({"name": ["Alice", "Bob"], "age": [25, 30]})
     df = drop_column(df, "age")
     assert df.shape == (2, 1)
+
+
+# ------------ summarize_dataframe ---------------
+def test_summarize_shape():
+    df = create_dataframe({"name": ["Alice", "Bob"], "age": [25, 30]})
+    summary = summarize_dataframe(df)
+    assert summary["shape"] == (2, 2)
+
+
+def test_summarize_columns():
+    df = create_dataframe({"name": ["Alice", "Bob"], "age": [25, 30]})
+    summary = summarize_dataframe(df)
+    assert summary["columns"] == ["name", "age"]
+
+
+def test_summarize_null_counts():
+    df = create_dataframe({"name": ["Alice", None], "age": [25, 30]})
+    summary = summarize_dataframe(df)
+    assert summary["null_counts"]["name"] == 1
