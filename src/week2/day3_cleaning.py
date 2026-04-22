@@ -12,7 +12,7 @@ def drop_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     """Drop all rows that contain at least one missing value"""
     return df.dropna()
 
-
+as
 def drop_duplicates(df: pd.DataFrame) -> pd.DataFrame:
     """Drop duplicate rows from a DataFrame"""
     return df.drop_duplicates()
