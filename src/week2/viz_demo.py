@@ -13,7 +13,12 @@ import numpy as np
 import pandas as pd
 
 from src.week2.plot_basics import plot_bar, plot_histogram, plot_line, plot_scatter
-from src.week2.seaborn_plots import plot_distribution
+from src.week2.seaborn_plots import (
+    plot_boxplot,
+    plot_distribution,
+    plot_heatmap,
+    plot_scatter_regression,
+)
 
 # plot_scatter_regression
 
@@ -54,12 +59,35 @@ ax = plot_distribution(df, "score", title="Score Distribution (KDE)")
 ax.get_figure().savefig("data/output/day4_plots/distribution.png")
 plt.close("all")
 
-# # --- plot_scatter_regression ---
-# df2 = pd.DataFrame(
-#     {"height": np.random.normal(170, 10, 50), "weight": np.random.normal(70, 15, 50)}
-# )
-# ax = plot_scatter_regression(df2, "height", "weight", title="Height vs Weight")
-# ax.get_figure().savefig("data/output/day4_plots/scatter_regression.png")
-# plt.close("all")
+# --- plot_scatter_regression ---
+df2 = pd.DataFrame(
+    {"height": np.random.normal(170, 10, 50), "weight": np.random.normal(70, 15, 50)}
+)
+ax = plot_scatter_regression(df2, "height", "weight", title="Height vs Weight")
+ax.get_figure().savefig("data/output/day4_plots/scatter_regression.png")
+plt.close("all")
+
+# ------ plot_boxplot --------
+df1 = pd.DataFrame(
+    {
+        "subject": ["Math", "Math", "English", "English", "Science", "Science"],
+        "score": [88, 92, 72, 78, 95, 89],
+    }
+)
+ax = plot_boxplot(df1, x="subject", y="score", title="Box Plot")
+ax.get_figure().savefig("data/output/day4_plots/boxplot.png")
+plt.close("all")
+
+# ---- plot_heatmap ------
+df2 = pd.DataFrame(
+    {
+        "height": [150, 160, 170, 180, 190],
+        "weight": [50, 60, 70, 80, 90],
+        "age": [20, 25, 30, 35, 40],
+    }
+)
+
+ax = plot_heatmap(df2, title="Heatmap")
+ax.get_figure().savefig("data/output/day4_plots/heatmap.png")
 
 print("All plots saved to data/output/day4_plots/")
