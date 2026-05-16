@@ -70,6 +70,18 @@ def plot_correlation_heatmap(df: pd.DataFrame, column: str, save: bool = True) -
     plt.show()
 
 
+# create a pairplot
+def plot_pairplot(df: pd.DataFrame, columns: list, save: bool = True) -> None:
+    """Pairplot showing relationships between numeric columns"""
+    sns.pairplot(data=df, vars=columns, hue="Survived")
+
+    if save:
+        path = OUTPUT_DIR / "pairplot.png"
+        plt.savefig(path, dpi=150, bbox_inches="tight")
+        print(f"Saved: {path}")
+    plt.show()
+
+
 if __name__ == "__main__":
     df = pd.read_csv("data/raw/titanic.csv")
     plot_distribution(df, "Age")
@@ -79,3 +91,5 @@ if __name__ == "__main__":
     plot_survival_by_category(df, "Pclass")
 
     plot_correlation_heatmap(df, "Pclass")
+
+    plot_pairplot(df, ["Age", "Fare", "Pclass", "Survived"])
