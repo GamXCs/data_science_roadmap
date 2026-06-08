@@ -56,7 +56,7 @@ def plot_survival_by_category(df: pd.DataFrame, column: str, save: bool = True) 
     plt.show()
 
 
-def plot_correlation_heatmap(df: pd.DataFrame, column: str, save: bool = True) -> None:
+def plot_correlation_heatmap(df: pd.DataFrame, save: bool = True) -> None:
     """"""
     fig, ax = plt.subplots(figsize=(10, 8))
     corr_matrix = df.select_dtypes(include="number").corr()
