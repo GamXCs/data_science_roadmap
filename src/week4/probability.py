@@ -2,11 +2,14 @@ from pathlib import Path
 
 import pandas as pd
 
-from week3.capstone import DATA_PATH
-
 
 def empirical_probability(df: pd.DataFrame, column: str, value) -> float:
-    pass
+    # check if column is empty
+    if column not in df.columns:
+        return 0.0
+    if len(df) == 0:  # check if the dataframe is empty
+        return 0.0
+    return len(df[df[column] == value]) / len(df)
 
 
 if __name__ == "__main__":
