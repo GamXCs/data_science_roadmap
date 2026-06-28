@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.week4.probability import empirical_probability
+from src.week4.probability import conditional_probability, empirical_probability
 
 
 def test_valid_col_and_value():
@@ -34,3 +34,17 @@ def test_empty_df():
     column = "Pclass"
     value = 0
     assert empirical_probability(df, column, value) == 0.0
+
+
+# test cases for conditional_probability()
+def test_valid_case():
+    df = "data/raw/titanic.csv"
+    assert conditional_probability(df, "Survived", 1, "Sex", "female")
+
+
+def test_col_not_exist():
+    pass
+
+
+def test_no_rows_match():
+    pass
